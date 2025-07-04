@@ -1,460 +1,903 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
-
+<html lang="en">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86934682-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greg LeBlanc - Security Engineer & Researcher</title>
+    <meta name="description" content="Greg LeBlanc - Staff Security Engineer at Google, specializing in threat intelligence, automation, and scalable security solutions.">
+    <meta name="keywords" content="security engineer, threat intelligence, cybersecurity, Google, Mandiant, automation">
+    <meta name="author" content="Greg LeBlanc">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86934682-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-86934682-1');
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #64748b;
+            --accent-color: #f59e0b;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-light: #94a3b8;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-accent: #f1f5f9;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
 
-    gtag('config', 'UA-86934682-1');
-  </script>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>glsec.us</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="description" content="glsec home page and resume" />
-  <meta name="keywords" content="vcard, resposnive, retina, resume, jquery, css3, bootstrap, portfolio" />
-  <meta name="author" content="lmpixels" />
-  <link rel="shortcut icon" href="favicon.ico">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+        }
 
-  <link rel="stylesheet" href="css/normalize.css" type="text/css">
-  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-  <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
-  <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-  <link rel="stylesheet" href="css/main.css" type="text/css">
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
 
-  <script src="js/modernizr.custom.js"></script>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
 
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            margin: 0 auto 2rem;
+            background-size: cover;
+            background-position: center;
+            background-image: url('./img/self.jpg');
+        }
+
+        .name {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .title {
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        .nav {
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            background: var(--bg-accent);
+        }
+
+        /* Main Content */
+        .main {
+            padding: 4rem 0;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 3rem;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* About */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .skill-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .skill-level {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .skill-bar {
+            flex: 1;
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .skill-percentage {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        /* Experience */
+        .timeline {
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .timeline-header {
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-period {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .timeline-company {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .timeline-description ul {
+            margin-top: 0.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-description li {
+            margin-bottom: 0.25rem;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .project-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Education */
+        .education-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .education-year {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-school {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .education-degree {
+            color: var(--text-secondary);
+        }
+
+        /* Contact */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.125rem;
+        }
+
+        .contact-details h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+        }
+
+        .contact-details p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .name {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .timeline::before {
+                left: 0.5rem;
+            }
+
+            .timeline-item {
+                padding-left: 2rem;
+            }
+
+            .timeline-item::before {
+                left: 0;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Print styles */
+        @media print {
+            .nav, .footer {
+                display: none;
+            }
+            
+            .header {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
 </head>
-
-<body class="page">
-
-  <div class="lm-animated-bg"></div>
-
-  <!-- Loading animation -->
-  <div class="preloader">
-    <div class="preloader-animation">
-      <div class="preloader-spinner">
-      </div>
-    </div>
-  </div>
-  <!-- /Loading animation -->
-
-  <!-- Scroll To Top Button -->
-  <div class="lmpixels-scroll-to-top"><i class="lnr lnr-chevron-up"></i></div>
-  <!-- /Scroll To Top Button -->
-
-  <div class="page-scroll">
-    <div id="page_container" class="page-container bg-move-effect" data-animation="transition-flip-in-right">
-
-      <!-- Header -->
-      <header id="site_header" class="header">
-        <div class="header-content clearfix">
-
-          <!-- Text Logo -->
-          <div class="text-logo">
-            <a href="index.html">
-              <div class="logo-symbol">GL</div>
-              <div class="logo-text">Greg <span>LeBlanc</span></div>
-            </a>
-          </div>
-          <!-- /Text Logo -->
-
-          <!-- Navigation -->
-          <div class="site-nav mobile-menu-hide">
-            <ul class="leven-classic-menu site-main-menu">
-              <li class="menu-item menu-item-has-children current-menu-item">
-                <a href="index.html">About Me</a>
-              </li>
-
-              <!-- <li class="menu-item menu-item-has-children">
-                  <a href="portfolio.html">Portfolio</a>
-                  <ul class="sub-menu">
-                    <li class="menu-item">
-                      <a href="portfolio-2-columns.html">Portfolio 2 Columns</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="portfolio.html">Portfolio 3 Columns</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="portfolio-4-columns.html">Portfolio 4 Columns</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="portfolio-5-columns.html">Portfolio 5 Columns</a>
-                    </li>
-                  </ul>
-                </li> -->
-
-              <!-- <li class="menu-item menu-item-has-children">
-                  <a href="blog.html">Blog</a>
-                  <ul class="sub-menu">
-                    <li class="menu-item">
-                      <a href="blog.html">Blog 2 Columns</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="blog-3-columns.html">Blog 3 Columns</a>
-                    </li>
-                  </ul>
-                </li> -->
-
-              <!-- <li class="menu-item">
-                  <a href="contact.html">Contact</a>
-                </li> -->
-            </ul>
-          </div>
-
-          <!-- Mobile Menu Toggle -->
-          <a class="menu-toggle mobile-visible">
-            <i class="fa fa-bars"></i>
-          </a>
-          <!-- Mobile Menu Toggle -->
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-image"></div>
+                <h1 class="name">Greg LeBlanc</h1>
+                <p class="title">Staff Security Engineer at Google</p>
+                <p class="subtitle">Senior security researcher and engineer specializing in threat intelligence, automation, and enterprise-scale security infrastructure</p>
+            </div>
         </div>
-      </header>
-      <!-- /Header -->
+    </header>
 
-      <div id="main" class="site-main">
-        <div id="main-content" class="single-page-content">
-          <div id="primary" class="content-area">
-            <div id="content" class="page-content site-content single-post" role="main">
-              <!-- Home Page Top Part -->
-              <div class="row">
-                <div class=" col-xs-12 col-sm-12">
-                  <div class="home-content">
-                    <div class="row flex-v-align">
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-                      <div class="col-sm-10 col-md-4 col-lg-4">
-                        <div class="home-photo">
-                          <div class="hp-inner" style="background-image: url(./img/self.jpg);">
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-sm-12 col-md-7 col-lg-7">
-                        <div class="home-text hp-left">
-                          <div class="owl-carousel text-rotation">
-                            <div class="item">
-                              <h4>Security Analyst & Researcher</h4>
-                            </div>
-
-                            <div class="item">
-                              <h4>Developer</h4>
-                            </div>
-
-                            <div class="item">
-                              <h4>Sys Admin</h4>
-                            </div>
-                          </div>
-
-                          <h1>Greg LeBlanc</h1>
-                          <p> Hi! I am a security researcher & engineer who has a fascination with automation, development and
-                            scalable technology. <br> Throughout my career I've been fortunate enough to work on several
-                            amazing teams with talented folks who share the same passion. Currently I am focused on
-                            developing tactical solutions and workflow optimizations that enable other researchers and
-                            analysts to work faster and smarter. </p>
-
-                        </div>
-                      </div>
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- About Section -->
+            <section id="about" class="section fade-in">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>I am a seasoned security researcher and engineer with over a decade of experience specializing in threat intelligence, automation, and scalable security infrastructure. My career has been driven by a passion for developing innovative solutions that enhance security operations and enable teams to work more efficiently.</p>
+                        <br>
+                        <p>Currently serving as Staff Security Engineer at Google, I lead the technical direction and development of critical internal security tooling platforms. My expertise encompasses threat intelligence analysis, network forensics, cloud infrastructure architecture, and automation engineering, with a proven track record of delivering enterprise-grade solutions that scale.</p>
                     </div>
-                  </div>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <div class="skill-title">Threat Intelligence & Network Forensics</div>
+                            <div class="skill-level">
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 95%"></div>
+                                </div>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-title">Python Development</div>
+                            <div class="skill-level">
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 100%"></div>
+                                </div>
+                                <span class="skill-percentage">100%</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-title">Linux Systems Administration</div>
+                            <div class="skill-level">
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-title">Cloud Infrastructure</div>
+                            <div class="skill-level">
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <!-- Home Page Top Part -->
+            </section>
 
+            <!-- Experience Section -->
+            <section id="experience" class="section fade-in">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="timeline-period">November 2022 - Present</div>
+                            <div class="timeline-company">Google (acquired Mandiant in 2022)</div>
+                            <div class="timeline-title">Staff Security Engineer</div>
+                        </div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Lead technical architecture and development of enterprise-scale security tooling platforms serving Google's Threat Intelligence Group</li>
+                                <li>Design and implement cloud-native infrastructure solutions on Google Cloud Platform (GCP) for security operations</li>
+                                <li>Architect and deploy containerized applications with robust CI/CD pipelines and automated testing frameworks</li>
+                                <li>Provide senior-level technical leadership, mentoring junior engineers and driving engineering best practices</li>
+                                <li>Develop comprehensive testing strategies including unit, integration, and end-to-end testing for production systems</li>
+                                <li>Establish technical documentation standards and maintain critical system documentation for security tooling</li>
+                            </ul>
+                        </div>
+                    </div>
 
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="timeline-period">March 2018 - November 2022</div>
+                            <div class="timeline-company">Mandiant</div>
+                            <div class="timeline-title">Principal Security Researcher → Senior Security Researcher</div>
+                        </div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Led cross-functional team developing and delivering tactical security solutions to threat analysts and researchers</li>
+                                <li>Architected and delivered enterprise-scale threat analysis platform supporting global security operations</li>
+                                <li>Embedded with engineering teams to bridge gap between security requirements and technical implementation</li>
+                                <li>Designed and deployed cloud-native applications across multiple SaaS and PaaS platforms</li>
+                                <li>Implemented production monitoring and troubleshooting systems for critical security infrastructure</li>
+                                <li>Established technical standards and best practices for security tool development and deployment</li>
+                            </ul>
+                        </div>
+                    </div>
 
-            </div>
-          </div>
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="timeline-period">October 2017 - March 2018</div>
+                            <div class="timeline-company">IBM</div>
+                            <div class="timeline-title">Intelligence Developer</div>
+                        </div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Designed and implemented scalable threat intelligence infrastructure supporting enterprise security operations</li>
+                                <li>Developed enterprise-grade Synapse API with custom middleware implementing role-based access control and advanced rate limiting</li>
+                                <li>Led migration of legacy systems to modern containerized infrastructure with zero-downtime deployment</li>
+                                <li>Architected and delivered production-ready Synapse UI using Python Flask framework with responsive design</li>
+                                <li>Established comprehensive CI/CD pipeline for automated testing and deployment of intelligence systems</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="timeline-period">September 2013 - October 2017</div>
+                            <div class="timeline-company">EMC</div>
+                            <div class="timeline-title">Principal Security Engineer</div>
+                        </div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Architected and implemented enterprise-grade Threat Intelligence framework supporting global security operations</li>
+                                <li>Served as senior incident response analyst, leading escalations and coordinating multi-team efforts during critical security incidents</li>
+                                <li>Conducted advanced threat hunting operations and performed comprehensive static and dynamic malware analysis</li>
+                                <li>Designed, deployed, and maintained high-availability clustered Threat Intelligence curation platform</li>
+                                <li>Managed and optimized multiple large-scale high-performance computing environments for security analytics</li>
+                                <li>Presented technical research on Intelligence, Surveillance, and Reconnaissance (ISR) automation at internal RSA conference</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="timeline-period">February 2011 - September 2013</div>
+                            <div class="timeline-company">MIT Lincoln Laboratory</div>
+                            <div class="timeline-title">Security Analyst</div>
+                        </div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Designed and implemented enterprise-scale Splunk deployment supporting real-time security monitoring and analytics</li>
+                                <li>Developed and deployed advanced network threat detection systems and automated response capabilities</li>
+                                <li>Conducted dynamic malware reverse engineering and analysis to extract threat intelligence indicators</li>
+                                <li>Performed comprehensive network traffic analysis and correlation with third-party threat intelligence feeds</li>
+                                <li>Led post-incident threat intelligence gathering and indicator development for threat hunting operations</li>
+                                <li>Managed daily security operations including incident triage, investigation, and response coordination</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="section fade-in">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-title">Development</div>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 100%"></div>
+                            </div>
+                            <span class="skill-percentage">Python</span>
+                        </div>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 50%"></div>
+                            </div>
+                            <span class="skill-percentage">JavaScript</span>
+                        </div>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 50%"></div>
+                            </div>
+                            <span class="skill-percentage">Scala</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-title">Infrastructure & DevOps</div>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                            <span class="skill-percentage">Linux Administration</span>
+                        </div>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                            <span class="skill-percentage">Cloud Infrastructure</span>
+                        </div>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                            <span class="skill-percentage">Docker & Containerization</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-title">Security & Analysis</div>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                            <span class="skill-percentage">Threat Intelligence</span>
+                        </div>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                            <span class="skill-percentage">Network Forensics</span>
+                        </div>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                            <span class="skill-percentage">Malware Analysis</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section fade-in">
+                <h2 class="section-title">Side Projects & Interests</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-title">Raspberry Pi Kubernetes Cluster</div>
+                        <div class="project-description">Enterprise-grade home lab infrastructure utilizing Raspberry Pi nodes for advanced container orchestration and microservices experimentation.</div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-title">Cloudflare Tunnel Integration</div>
+                        <div class="project-description">Zero-trust network architecture implementation using Cloudflare's advanced tunneling technology for secure remote access to home services.</div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-title">Traefik Reverse Proxy</div>
+                        <div class="project-description">Production-grade reverse proxy and load balancer deployment with automated SSL certificate management and service discovery.</div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-title">Home Assistant Automation</div>
+                        <div class="project-description">Advanced home automation platform with custom integrations for IoT device management and intelligent workflow orchestration.</div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-title">OCR Wood Stove Monitoring</div>
+                        <div class="project-description">Innovative IoT solution combining thermocouple sensors with optical character recognition for automated temperature monitoring and alerting.</div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-title">Security Monitoring Stack</div>
+                        <div class="project-description">Comprehensive security operations center deployment featuring Wazuh SIEM, Graylog log management, and Zeek & Suricata intrusion detection systems.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section id="education" class="section fade-in">
+                <h2 class="section-title">Education</h2>
+                <div class="education-item">
+                    <div class="education-year">2013</div>
+                    <div class="education-school">Western Governors University</div>
+                    <div class="education-degree">Master of Science in Information Security and Assurance</div>
+                </div>
+                <div class="education-item">
+                    <div class="education-year">2010</div>
+                    <div class="education-school">Wentworth Institute of Technology</div>
+                    <div class="education-degree">Bachelor of Science in Computer Networking and Information Systems</div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section fade-in">
+                <h2 class="section-title">Contact</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>greg@glsec.us</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>LinkedIn</h4>
+                            <p>linkedin.com/in/gregleblanc</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>GitHub</h4>
+                            <p>github.com/gregleblanc</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-      </div>
+    </main>
 
-      <div id="content" class="page-content site-content single-post" role="main">
-        <div class="row">
-
-          <div class=" col-xs-12 col-sm-6 ">
-            <div class="block-title">
-              <h2>Education</h2>
-            </div>
-
-            <div id="timeline_1" class="timeline clearfix">
-              <div class="timeline-item clearfix">
-                <h5 class="item-period ">2013</h5>
-                <span class="item-company">Western Governors University</span>
-                <h4 class="item-title">Master or Science in Information Security and Assurance</h4>
-              </div>
-
-              <div class="timeline-item clearfix">
-                <h5 class="item-period ">2010</h5>
-                <span class="item-company">Wentworth Institute of Technology</span>
-                <h4 class="item-title">Bachelor of Science in Computer Networking and Information Systems</h4>
-              </div>
-
-            </div>
-          </div>
-
-          <div class=" col-xs-12 col-sm-6 ">
-            <div class="block-title">
-              <h2>Experience</h2>
-            </div>
-            <div id="timeline_2" class="timeline clearfix">
-              <div class="timeline-item clearfix">
-                <h5 class="item-period current">November 2022 - Current</h5>
-                <span class="item-company">Google (acquired Mandiant in 2022) </span>
-                <h4 class="item-title">Staff Security Engineer</h5>
-                  <p>
-                    Led the technical direction and development of critical, internal security tooling platforms used by the Google Threat Intelligence Group. Served as co-primary developer and maintainer, ensuring high availability, performance, and scalability. <br>
-                    Architected, deployed, and managed infrastructure for security tooling on Google Cloud Platform (GCP). <br>
-                    Provided expert-level support and troubleshooting for complex technical issues related to security tooling and infrastructure. Helped resolve production incidents, debugged code, and collaborated with cross-functional teams to identify and implement solutions. <br>
-                    Designed and implemented robust testing strategies for internal codebase which included unit tests, smoke tests, and integration tests to ensure code quality and reliability. <br>
-                    Managed and prioritized ticket queues, triaged new tickets, and served as a point of contact for security tooling inquiries. Provided timely and effective support to internal stakeholders and users. <br>
-                    Led and contributed to various internal initiatives focused on improving efficiency and automation. Identified opportunities for automation and developed product requirements. <br>
-                    Mentored and provided technical guidance to junior engineers. Shared knowledge, provided code reviews, and assisted with troubleshooting complex issues. <br>
-                    Contributed to the development and maintenance of documentation for security tooling and infrastructure. Created and updated technical documentation, contributing guides, and onboarding materials. <br>
-                  </p>
-              </div>
-
-              <div class="timeline-item clearfix">
-                <h5 class="item-period current">March 2018 - November 2022</h5>
-                <span class="item-company">Mandiant</span>
-                <h4 class="item-title">Principal Security Researcher</h4>
-                <p>Led internal function that develops and delivers tactical solutions to analysts and researchers
-                </p>
-
-                <h4 class="item-title">Senior Security Researcher</h4>
-                <p>Helped prototype and deliver large scale analysis platform.<br>
-                  Forward deployed into engineering team and performed actual engineering duties<br>
-                  Served as intermediary element between analysts and engineering<br>
-                  Helped proof of concept requirements to ensure accurate delivery<br>
-                  Deployed various systems and services to cloud platforms (SaaS & PaaS)<br>
-                  Helped troubleshoot production systems</p>
-              </div>
-
-              <div class="timeline-item clearfix">
-                <h5 class="item-period ">October 2017 - March 2018</h5>
-                <span class="item-company">IBM</span>
-                <h4 class="item-title">Intelligence Developer</h4>
-                <p>Architected scalable intelligence infrastructure<br>
-                  Developed extensible Synapse API with custom middleware for robust role based access control and rate
-                  limiting<br>
-                  Began migration of existing data to new containerized infrastructure<br>
-                  Designed and completed beta Synapse UI written in Python & Flask<br>
-                  Enrolled current development efforts into a simple CI pipeline</p>
-              </div>
-
-              <div class="timeline-item clearfix">
-                <h5 class="item-period ">September 2013 - October 2017</h5>
-                <span class="item-company">EMC</span>
-                <h4 class="item-title">Principal Security Engineer</h4>
-                <p>Developed, designed and implemented a robust Threat Intelligence (TI) framework that ingested,
-                  enriched, stored and disseminated TI to both analysts and automated controls<br>
-                  Served as a Level 3 analyst that handled escalations and coordinated efforts during large-scale
-                  incidents<br>
-                  Performed various Threat Hunting activities along with basic static and dynamic malware analysis<br>
-                  Helped categorize and attribute external threat actors using internally developed trade craft<br>
-                  Deployed, managed and upgraded a clustered Threat Intelligence curation platform <br>
-                  Integrated a real-time collaboration solution for a Global Team including various custom automated
-                  bots that allowed user interaction to various tools<br>
-                  Managed multiple large high-performance computing environments that stored, analyzed and summarized
-                  internal packet, log and endpoint data<br>
-                  Deployed an internal source code repository that helped legitimize internal development efforts<br>
-                  Tutored Level 1 and Level 2 analysts various Intelligence and system administrative methods along with
-                  Python <br>
-                  Helped Implement the ISR (Intelligence, Surveillance and Reconnaissance) methodology to the Threat
-                  Intelligence workflow<br>
-                  Spoke at an internal RSA conference on ISR and Automation<br>
-                </p>
-              </div>
-
-              <div class="timeline-item clearfix">
-                <h5 class="item-period ">Febuary 2011 - September 2013</h5>
-                <span class="item-company">MIT Lincoln Laboratory</span>
-                <h4 class="item-title">Security Analyst</h4>
-                <p>Architected and managed a Splunk Enterprise deployment<br>
-                  Managed and detected network based threats<br>
-                  (Dynamically) Reverse Engineered malware samples<br>
-                  Analyzed network traffic and third-party indicators for suspicious activity<br>
-                  Performed Threat Intelligence work, gathered indicators post compromise<br>
-                  Analyzed and categorized IoCs of known adversaries<br>
-                  Performed day to day incident handling roles and responsibilities<br>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class=" col-xs-12 col-sm-6 ">
-            <div class="block-title">
-              <h2>Side Projects and Interests</h2>
-            </div>
-            <div id="timeline_2" class="timeline clearfix">
-              <div class="timeline-item clearfix">
-                <p>
-                  Raspberry PI Kubernetes Cluster <br>
-                  Cloudflare Tunnel Integration <br>
-                  Traefik Reverse Proxy <br>
-                  Home Assistant <br>
-                  OCR Driven Wood Stove Monitoring via Thermocouple Sensor <br>
-                  Wazuh OSS SIEM <br>
-                  Greylog Log Server <br>
-                  Zeek & Suricata IDS off of passive network sensor <br>
-                </p>
-              </div>
-            </div>
-          </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Greg LeBlanc. All rights reserved.</p>
         </div>
+    </footer>
 
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-        <div class="row">
-          <div class=" col-xs-12 col-sm-12 ">
-            <div class="p-40"></div>
-          </div>
-        </div>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-        <div class="row">
-          <div class=" col-xs-12 col-sm-6 ">
-            <div class="block-title">
-              <h2>Security, Systems and Technology Skills</h2>
-            </div>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
 
-            <div id="skills_1" class="skills-info skills-first-style">
-              <!-- Skill 1 -->
-              <div class="clearfix">
-                <h4>Threat Intelligence & Network Forensics</h4>
-                <div class="skill-value">95%</div>
-              </div>
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(section);
+        });
 
-              <div id="skill_1" data-value="95" class="skill-container">
-                <div class="skill-percentage"></div>
-              </div>
-              <!-- /Skill 1 -->
+        // Active navigation highlighting
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-links a');
 
-              <!-- Skill 2 -->
-              <div class="clearfix">
-                <h4>Linux Systems Administration</h4>
-                <div class="skill-value">80%</div>
-              </div>
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-              <div id="skill_2" data-value="80" class="skill-container">
-                <div class="skill-percentage"></div>
-              </div>
-              <!-- /Skill 2 -->
-
-              <!-- Skill 3 -->
-              <div class="clearfix">
-                <h4>Cloud Infrastructure</h4>
-                <div class="skill-value">80%</div>
-              </div>
-              <div id="skill_3" data-value="80" class="skill-container">
-                <div class="skill-percentage"></div>
-              </div>
-              <!-- Skill 3 -->ƒ
-
-              <!-- Skill 4 -->
-              <div class="clearfix">
-                <h4>Docker & Containerization</h4>
-                <div class="skill-value">75%</div>
-              </div>
-              <div id="skill_4" data-value="75" class="skill-container">
-                <div class="skill-percentage"></div>
-              </div>
-              <!-- /Skill 4 -->
-            </div>
-
-          </div>
-
-
-          <div class=" col-xs-12 col-sm-6 ">
-            <div class="block-title">
-              <h2>Development</h2>
-            </div>
-
-
-            <div id="skills_2" class="skills-info skills-first-style">
-              <!-- Skill 5 -->
-              <div class="clearfix">
-                <h4>Python</h4>
-                <div class="skill-value">100%</div>
-              </div>
-              <div id="skill_5" data-value="100" class="skill-container">
-                <div class="skill-percentage"></div>
-              </div>
-              <!-- /Skill 5 -->
-
-              <!-- Skill 6 -->
-              <div class="clearfix">
-                <h4>Javascript</h4>
-                <div class="skill-value">50%</div>
-              </div>
-              <div id="skill_6" data-value="50" class="skill-container">
-                <div class="skill-percentage"></div>
-              </div>
-              <!-- /Skill 6 -->
-
-              <!-- Skill 7 -->
-              <div class="clearfix">
-                <h4>Scala</h4>
-                <div class="skill-value">50%</div>
-              </div>
-              <div id="skill_7" data-value="50" class="skill-container">
-                <div class="skill-percentage"></div>
-              </div>
-              <!-- /Skill 7 -->
-
-              <!-- Skill 8 -->
-              <div class="clearfix">
-                <h4>Go</h4>
-                <div class="skill-value">45%</div>
-              </div>
-              <div id="skill_8" data-value="45" class="skill-container">
-                <div class="skill-percentage"></div>
-              </div>
-              <!-- /Skill 8 -->
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer -->
-      <footer class="site-footer clearfix">
-        <div class="footer-social">
-          <ul class="footer-social-links">
-            <li>
-              <a href="https://twitter.com/gregLeBl_nc" target="_blank">Twitter</a>
-            </li>
-
-            <li>
-              <a href="https://github.com/gleblanc1783" target="_blank">Github</a>
-            </li>
-
-            <li>
-              <a href="https://www.linkedin.com/in/greg-l-31222a20/" target="_blank">LinkedIn</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="footer-copyrights">
-          <p>© 2022 All rights reserved. LMPixels.</p>
-        </div>
-      </footer>
-      <!-- /Footer -->
-
-    </div>
-  </div>
-
-  <script src="js/jquery-3.5.1.min.js"></script>
-  <script src="js/imagesloaded.pkgd.min.js"></script>
-  <script src='https://www.google.com/recaptcha/api.js'></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src='js/jquery.shuffle.min.js'></script>
-  <script src='js/masonry.pkgd.min.js'></script>
-  <script src='js/owl.carousel.min.js'></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrDf32aQTCVENBhFJbMBKOUTiUAABtC2o"></script>
-  <script src="js/jquery.googlemap.js"></script>
-  <script src="js/validator.js"></script>
-  <script src="js/main.js"></script>
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
-
 </html>
